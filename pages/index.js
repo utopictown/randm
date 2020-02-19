@@ -18,7 +18,7 @@ const Home = () => {
 
   const randm = () => {
     const randomizedIdx = Math.floor((Math.random() * item.length - 1) + 1)
-    setResult(item[randomizedIdx])
+    if(item.length) setResult(item[randomizedIdx])
   }
 
   const removeItem = (index) => {

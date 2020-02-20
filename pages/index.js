@@ -16,6 +16,13 @@ const Home = () => {
     setInputItem('')
   }
 
+  const handleInputItem = (e) => {
+    if(e.key == 'Enter') {
+      setItem([...item, e.target.value]) 
+      setInputItem('')
+    }
+  }
+
   const randm = () => {
     const randomizedIdx = Math.floor((Math.random() * item.length - 1) + 1)
     if(item.length) setResult(item[randomizedIdx])
@@ -30,7 +37,7 @@ const Home = () => {
   return (
     <>
       {item.length ? item.map((_item, i) => <div key={i}>{_item} <span onClick={() => removeItem(i)}>❌</span> </div>) : 'masih kosong..'}
-      <div><input type="text" onChange={val => setInputItem(val.target.value)} value={inputItem} style={{ border: '1px solid' }}/></div>
+      <div><input type="text" onChange={val => setInputItem(val.target.value)} onKeyDown={e => handleInputItem(e)} value={inputItem} style={{ border: '1px solid' }}/></div>
       <button onClick={() => handleSetItem()}>➕tambah</button>
       <button onClick={() => randm()}>🤔random!</button>
       <br/>
